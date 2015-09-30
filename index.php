@@ -11,7 +11,21 @@ function autoload( $files ) {
 }
 require_once 'config.php';
 
+$api_response = array(
+    'status'=>400
+);
 
-$game=new Game();
+
+if (array_key_exists('method', $_GET) && strcasecmp($_GET['method'], 'quiz') == 0) {
+
+    $api_response['status']=200;
+    $game = new Game();
+    $api_response['ticket']=$game->getTicket();
+    WebAPI::deliver_response('json', $api_response);
+}
+
+else {
+    echo 'Check API manual!';
+}
 
 ?>

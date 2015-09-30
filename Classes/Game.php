@@ -28,8 +28,6 @@ class Game
 
             $db_conn->db_query($sql);
 
-            echo '<p>',$variant,'</p>';
-            echo "<b>$answer</b>";
             $qustion_nr++;
         }
     }
