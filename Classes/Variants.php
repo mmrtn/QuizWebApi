@@ -13,13 +13,17 @@ class Variants {
         $variants = array();
 
         foreach ($variants_arr as $element) {
-            $variants[] = $element['song']." - ".$element['artist'];
+            $variants[] = $element['song']." - ".$element['artist']." - ".$element['imgURL'];
         }
         $this->answer=rand(0, count($variants)-1);
         $this->variant_arr=$variants;
         // shuffle($this->variant_arr);
     }
 
+    public function __toString()
+    {
+        return json_encode($this->variant_arr);
+    }
 
     public function get_Variant() {
         return $this->variant_arr;

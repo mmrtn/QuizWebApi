@@ -1,6 +1,9 @@
 <?php
-// front controller
+// front controller - index.php
+
 spl_autoload_register( 'autoload' );
+
+// function autoloader loads requires all php files from Classes folder
 
 function autoload( $files ) {
 
@@ -8,13 +11,7 @@ function autoload( $files ) {
 }
 require_once 'config.php';
 
-$quiz=new Quiz();
-$test=$quiz->getQuiz_test();
-foreach ($test as $variant) {
-    $question=$variant->get_Variant();
-    $answer=$variant->get_Answer();
-    echo '<p>',json_encode($question),'</p>';
-    echo "<b>$answer</b>";
-}
+
+$game=new Game();
 
 ?>

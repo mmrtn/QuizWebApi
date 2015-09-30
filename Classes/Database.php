@@ -20,7 +20,7 @@ class Database {
         return $conn;
     }
 
-    private function get_conn() {
+    public function get_conn() {
         return $this->connection;
     }
 
