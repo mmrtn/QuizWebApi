@@ -11,10 +11,10 @@ class Game
     }
 
     private function create_quiz() {
-        $quiz=new Quiz();
-        $test=$quiz->getQuiz_test();
         $this->ticket = $this->generateRandomString();
         $qustion_nr=0;
+        $quiz=new Quiz();
+        $test=$quiz->getQuiz_test();
 
         foreach ($test as $variant) {
             $questions=$variant->get_Variant(); //array from Variant object
@@ -43,9 +43,7 @@ class Game
         return $randomString;
     }
 
-    /**
-     * @return mixed
-     */
+
     public function getTicket()
     {
         return $this->ticket;

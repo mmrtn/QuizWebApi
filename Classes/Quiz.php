@@ -1,8 +1,8 @@
 <?php
 
 class Quiz {
-
-    private $quiz_test; //this Array contains Variants Objects
+    /* @var $quiz_test Variants */
+    private $quiz_test;
 
     function __construct($nr_of_questions=10, $year_from=1946, $year_to=2015) {
         $this->quiz_test = $this->create_test($nr_of_questions, $year_from, $year_to);
