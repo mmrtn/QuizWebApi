@@ -2,18 +2,23 @@
 
 class Query extends Database
 {
-    /*@var $result Array*/
     private $result;
 
-    public function __construct($sql)
+    public function __construct($sql, $result_as_array=true)
     {
         parent::__construct();
-        $this->result=$this->sql_query($sql);
+        $this->result=$this->sql_query($sql, $result_as_array);
 
     }
 
-    public function sql_query($sql) {
-        $result=$this->db_query($sql)->fetch_assoc();
+    private function sql_query($sql, $result_as_array) {
+        if ($result_as_array) {
+            $result=$this->db_query($sql)->fetch_assoc();
+        }
+        else {
+            $result=$this->db_query($sql);
+        }
+
         $this->close_conn();
         return $result;
     }

@@ -23,7 +23,7 @@ class Game
             $db_conn = new Database();
             $db_link= $db_conn->get_conn();
             $query_str = "INSERT INTO `quiz`(`test_array`, `answer`, `ticket`) VALUES ('%s', '%s', '%s')";
-            // $sql = sprintf($query_str, serialize(mysqli_real_escape_string($db_link, $questions)), $answer, $ticket);
+
             $sql = sprintf($query_str, mysqli_real_escape_string($db_link, json_encode($questions)), $answer, $this->ticket.'Q'.$qustion_nr);
 
             $db_conn->db_query($sql);

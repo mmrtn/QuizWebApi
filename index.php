@@ -15,32 +15,44 @@ $api_response = array(
     'status'=>400
 );
 
-if (array_key_exists('method', $_GET)) {
+if (count($_GET)) {
 
-    if(strcasecmp($_GET['method'], 'quiz') == 0) {
+    if(array_key_exists('method', $_GET) && strcasecmp($_GET['method'], 'newquiz') == 0) {
         $api_response['status']=200;
         $game = new Game();
         $api_response['ticket']=$game->getTicket();
         WebAPI::deliver_response('json', $api_response);
     }
-    elseif (strcasecmp($_GET['method'], 'answer') == 0 && array_key_exists('ticket', $_GET)) {
-        $api_response['ticket']='FALSE';
+    elseif (array_key_exists('ticket', $_GET) && Check::is_ticket($_GET['ticket'])) {
         $ticket=$_GET['ticket'];
-
-        if (Validate::is_ticket($ticket)) {
+        if (array_key_exists('method', $_GET) && $_GET['method']=='next') {
             $api_response['status']=200;
-            $api_response['ticket']='TRUE';
+            $api_response['youTubeId']='not where yet...';
+            $api_response['variants']=json_decode(Check::get_varinats($ticket));
+            WebAPI::deliver_response('json', $api_response);
         }
+        elseif (array_key_exists('answer', $_GET)) {
+            $answer=$_GET['answer'];
 
-        WebAPI::deliver_response('json', $api_response);
+            $api_response['ticket']='TRUE';
+            $api_response['status']=200;
+            $api_response['answer']='INCORRECT!';
 
+            if (Check::is_correct_answer($answer, $ticket)) {
+                $api_response['answer']='CORRECT!';
+            }
+            WebAPI::deliver_response('json', $api_response);
+        }
     }
 
+
+    else {
+        echo 'Incorrect API parameters!';
+    }
+
+
 }
 
 
-else {
-    echo 'Check API manual!';
-}
 
 ?>

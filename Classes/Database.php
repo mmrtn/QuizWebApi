@@ -7,7 +7,7 @@ class Database {
     //put your code here
     public function __construct($servername = DATABASE_HOSTNAME, $username = DATABASE_USERNAME, $password = DATABASE_PASSWORD, $dbname = DATABASE_NAME) {
 
-        $conn = mysqli_connect($servername, $username, $password, $dbname);
+        $conn = $this->connect_db($servername, $username, $password, $dbname);
         $this->connection = $conn;
         // $this->connection=connect_db($servername, $username, $password, $dbname);
     }
