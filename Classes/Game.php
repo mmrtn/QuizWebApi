@@ -1,15 +1,27 @@
 <?php
 
 
+/**
+ * Class Game
+ */
 class Game
 {
+
+    /**
+     * @var string $ticket
+     * each ticket is unique and connects 10-quesiton quiz with answers
+     */
     private $ticket;
+
 
     public function __construct()
     {
         $this->create_quiz();
     }
 
+    /**
+     *  generates quiz by adding test questions/answers to database
+     */
     private function create_quiz() {
         $this->ticket = $this->generateRandomString();
         $qustion_nr=0;
@@ -33,6 +45,10 @@ class Game
     }
 
 
+    /**
+     * @param int $length
+     * @return string
+     */
     private function generateRandomString($length = 16) {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPRSTUVWXYZ';
         $charactersLength = strlen($characters);
@@ -44,6 +60,9 @@ class Game
     }
 
 
+    /**
+     * @return mixed
+     */
     public function getTicket()
     {
         return $this->ticket;

@@ -15,7 +15,10 @@ $api_response = array(
     'status'=>400
 );
 
-if (count($_GET)) {
+// Check if there is any get request
+if (isset($_GET)) {
+    // Checks if any valid params are sent
+    // generates response according to paramas
 
     if(array_key_exists('method', $_GET) && strcasecmp($_GET['method'], 'newquiz') == 0) {
         $api_response['status']=200;

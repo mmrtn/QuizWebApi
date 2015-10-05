@@ -1,8 +1,12 @@
 <?php
 
-
+// static class for common validation functions
 class Check
 {
+    /**
+     * @param $ticket
+     * @return bool
+     */
     static function is_ticket($ticket) {
         if (ctype_alnum($ticket) && strlen($ticket)===16) {
 
