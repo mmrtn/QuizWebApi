@@ -3,6 +3,10 @@
 
 class WebAPI
 {
+    /**
+     * @param $format
+     * @param $api_response
+     */
     static function deliver_response($format, $api_response)
     {
 

@@ -19,6 +19,11 @@ class Check
         return false;
     }
 
+    /**
+     * @param $answer
+     * @param $ticket
+     * @return bool
+     */
     static function is_correct_answer($answer, $ticket) {
 
         $query=new Query("SELECT `answer`,`id` FROM `quiz` WHERE BINARY `ticket` LIKE '$ticket%' LIMIT 1");
@@ -33,6 +38,10 @@ class Check
 
     }
 
+    /**
+     * @param $ticket
+     * @return array
+     */
     static function get_varinats($ticket) {
         $query=new Query("SELECT `test_array` FROM `quiz` WHERE BINARY `ticket` LIKE '$ticket%' LIMIT 1");
         return $query->getResult()['test_array'];

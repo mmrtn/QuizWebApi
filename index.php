@@ -5,6 +5,7 @@ spl_autoload_register( 'autoload' );
 
 // function autoloader loads requires all php files from Classes folder
 
+
 function autoload( $files ) {
 
     require_once '/Classes/'.$files.'.php';
@@ -31,7 +32,7 @@ if (isset($_GET)) {
         if (array_key_exists('method', $_GET) && $_GET['method']=='next') {
             $api_response['status']=200;
             $api_response['youTubeId']='not where yet...';
-            $api_response['variants']=json_decode(Check::get_varinats($ticket));
+            $api_response['variants']=json_decode(Check::get_varinats($ticket)); //converts array to string in json
             WebAPI::deliver_response('json', $api_response);
         }
         elseif (array_key_exists('answer', $_GET)) {
