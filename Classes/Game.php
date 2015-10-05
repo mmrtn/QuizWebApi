@@ -6,10 +6,10 @@
  */
 class Game
 {
-
     /**
      * @var string $ticket
      * each ticket is unique and connects 10-quesiton quiz with answers
+     *
      */
     private $ticket;
 
@@ -20,28 +20,37 @@ class Game
     }
 
     /**
-     *  generates quiz by adding test questions/answers to database
+     *  generates quiz and adds test questions/answers to database
      */
     private function create_quiz() {
         $this->ticket = $this->generateRandomString();
         $qustion_nr=0;
         $quiz=new Quiz();
+        /**
+         * @var Variants[] $test
+         */
         $test=$quiz->getQuiz_test();
+        /** @var $db Database*/
+        $db = new Database();
+        /** @var $db_link mysqli*/
+        $db_link= $db->get_conn();
+
 
         foreach ($test as $variant) {
+
             $questions=$variant->get_Variant(); //array from Variant object
             $answer=$variant->get_Answer();
 
-            $db_conn = new Database();
-            $db_link= $db_conn->get_conn();
+
             $query_str = "INSERT INTO `quiz`(`test_array`, `answer`, `ticket`) VALUES ('%s', '%s', '%s')";
 
             $sql = sprintf($query_str, mysqli_real_escape_string($db_link, json_encode($questions)), $answer, $this->ticket.'Q'.$qustion_nr);
 
-            $db_conn->db_query($sql);
+            $db->db_query($sql);
 
             $qustion_nr++;
         }
+        $db->close_conn();
     }
 
 
@@ -61,7 +70,7 @@ class Game
 
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getTicket()
     {

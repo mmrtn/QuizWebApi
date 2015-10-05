@@ -1,13 +1,23 @@
 <?php
 
+/**
+ * Class Quiz
+ */
 class Quiz {
-    /* @var $quiz_test Variants */
+    /* @var Variants $quiz_test  */
     private $quiz_test;
 
     function __construct($nr_of_questions=10, $year_from=1946, $year_to=2015) {
         $this->quiz_test = $this->create_test($nr_of_questions, $year_from, $year_to);
     }
 
+    /**
+     * @param $nr_of_questions
+     * @param $year_from
+     * @param $year_to
+     * @return array
+     * @method array Variants
+     */
     private function create_test($nr_of_questions, $year_from, $year_to) {
         $nr_of_questions*=6;
         $test = array();
@@ -34,6 +44,9 @@ class Quiz {
     }
 
 
+    /**
+     * @return array|Variants
+     */
     function getQuiz_test() {
         return $this->quiz_test;
     }

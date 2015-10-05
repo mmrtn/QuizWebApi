@@ -2,6 +2,9 @@
 
 class Query extends Database
 {
+    /**
+     * @var array|bool|mysqli_result
+     */
     private $result;
 
     public function __construct($sql, $result_as_array=true)
@@ -11,7 +14,12 @@ class Query extends Database
 
     }
 
-    private function sql_query($sql, $result_as_array) {
+    /**
+     * @param $sql
+     * @param $result_as_array
+     * @return array|bool|mysqli_result
+     */
+    public function sql_query($sql, $result_as_array) {
         if ($result_as_array) {
             $result=$this->db_query($sql)->fetch_assoc();
         }
