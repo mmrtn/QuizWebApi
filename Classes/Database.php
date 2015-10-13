@@ -4,7 +4,8 @@
  * Class Database
  *
  */
-class Database {
+class Database
+{
 
     /**
      * @var object $connection
@@ -21,7 +22,8 @@ class Database {
      * default values are using constants from config.php
      */
 
-    public function __construct($servername = DATABASE_HOSTNAME, $username = DATABASE_USERNAME, $password = DATABASE_PASSWORD, $dbname = DATABASE_NAME) {
+    public function __construct($servername = DATABASE_HOSTNAME, $username = DATABASE_USERNAME, $password = DATABASE_PASSWORD, $dbname = DATABASE_NAME)
+    {
 
         $conn = $this->connect_db($servername, $username, $password, $dbname);
         $this->connection = $conn;
@@ -36,7 +38,8 @@ class Database {
      * @param $dbname
      * @return mysqli
      */
-    private function connect_db($servername, $username, $password, $dbname) {
+    private function connect_db($servername, $username, $password, $dbname)
+    {
         $conn = mysqli_connect($servername, $username, $password, $dbname);
         if (!$conn) {
             die("Connection failed: " . mysqli_connect_error());
@@ -47,7 +50,8 @@ class Database {
     /**
      * @return object
      */
-    public function get_conn() {
+    public function get_conn()
+    {
         return $this->connection;
     }
 
@@ -55,7 +59,8 @@ class Database {
      * @param $sql_query
      * @return bool|mysqli_result
      */
-    public function db_query($sql_query) {
+    public function db_query($sql_query)
+    {
         $result = mysqli_query($this->connection, $sql_query);
 
         if (!$result) {
@@ -71,7 +76,8 @@ class Database {
     /**
      * close connection and kill the thread
      */
-    public function close_conn() {
+    public function close_conn()
+    {
         $thread = $this->connection->thread_id;
         // echo "<h2>$thread</h2>";
         $this->get_conn()->kill($thread);

@@ -7,12 +7,13 @@ class Check
      * @param $ticket
      * @return bool
      */
-    static function is_ticket($ticket) {
-        if (ctype_alnum($ticket) && strlen($ticket)===16) {
+    static function is_ticket($ticket)
+    {
+        if (ctype_alnum($ticket) && strlen($ticket) === 16) {
 
-            $query=new Query("SELECT COUNT(`ticket`) FROM `quiz` WHERE BINARY `ticket` LIKE '$ticket%';");
+            $query = new Query("SELECT COUNT(`ticket`) FROM `quiz` WHERE BINARY `ticket` LIKE '$ticket%';");
 
-            if ((int) $query->getResult()["COUNT(`ticket`)"]) {
+            if ((int)$query->getResult()["COUNT(`ticket`)"]) {
                 return true;
             }
         }
@@ -24,14 +25,16 @@ class Check
      * @param $ticket
      * @return bool
      */
-    static function is_correct_answer($answer, $ticket) {
+    static function is_correct_answer($answer, $ticket)
+    {
 
-        $query=new Query("SELECT `answer`,`id` FROM `quiz` WHERE BINARY `ticket` LIKE '$ticket%' LIMIT 1");
-        $id = (int) $query->getResult()['id'];
+        $query = new Query("SELECT `answer`,`id` FROM `quiz` WHERE BINARY `ticket` LIKE '$ticket%' LIMIT 1");
+        $id = (int)$query->getResult()['id'];
 
-        if ((int) $query->getResult()['answer'] === (int) $answer) {
+        if ((int)$query->getResult()['answer'] === (int)$answer) {
 
-            $query=new Query("DELETE FROM `quiz` WHERE id=$id", false);
+            $query = new Query("DELETE FROM `quiz` WHERE id=$id", false);
+
             return true;
         }
         return false;
@@ -42,8 +45,9 @@ class Check
      * @param $ticket
      * @return array
      */
-    static function get_varinats($ticket) {
-        $query=new Query("SELECT `test_array` FROM `quiz` WHERE BINARY `ticket` LIKE '$ticket%' LIMIT 1");
+    static function get_varinats($ticket)
+    {
+        $query = new Query("SELECT `test_array` FROM `quiz` WHERE BINARY `ticket` LIKE '$ticket%' LIMIT 1");
         return $query->getResult()['test_array'];
     }
 }

@@ -7,10 +7,10 @@ class Query extends Database
      */
     private $result;
 
-    public function __construct($sql, $result_as_array=true)
+    public function __construct($sql, $result_as_array = true)
     {
         parent::__construct();
-        $this->result=$this->sql_query($sql, $result_as_array);
+        $this->result = $this->sql_query($sql, $result_as_array);
 
     }
 
@@ -19,12 +19,12 @@ class Query extends Database
      * @param $result_as_array
      * @return array|bool|mysqli_result
      */
-    public function sql_query($sql, $result_as_array) {
+    public function sql_query($sql, $result_as_array)
+    {
         if ($result_as_array) {
-            $result=$this->db_query($sql)->fetch_assoc();
-        }
-        else {
-            $result=$this->db_query($sql);
+            $result = $this->db_query($sql)->fetch_assoc();
+        } else {
+            $result = $this->db_query($sql);
         }
 
         $this->close_conn();

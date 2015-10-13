@@ -3,12 +3,14 @@
 /**
  * Class Quiz
  */
-class Quiz {
-    /* @var Variants $quiz_test  */
+class Quiz
+{
+    /* @var Variants $quiz_test */
     private $quiz_test;
 
-    function __construct($nr_of_questions=10, $year_from=1946, $year_to=2015) {
-        $this->quiz_test = $this->create_test($nr_of_questions, $year_from, $year_to);
+    function __construct($year_from = 1946, $year_to = 2015, $nr_of_questions = 10)
+    {
+        $this->quiz_test = $this->create_test($year_from, $year_to, $nr_of_questions);
     }
 
     /**
@@ -18,8 +20,9 @@ class Quiz {
      * @return array
      * @method array Variants
      */
-    private function create_test($nr_of_questions, $year_from, $year_to) {
-        $nr_of_questions*=6;
+    private function create_test($year_from, $year_to, $nr_of_questions)
+    {
+        $nr_of_questions *= 6;
         $test = array();
         $test_variant = array();
         $db_conn = new Database();
@@ -47,7 +50,8 @@ class Quiz {
     /**
      * @return array|Variants
      */
-    function getQuiz_test() {
+    function getQuiz_test()
+    {
         return $this->quiz_test;
     }
 
