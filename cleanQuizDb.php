@@ -16,3 +16,4 @@ $db = new Database();
 log_query($db->db_query("DELETE FROM quiz WHERE timestamp < DATE_SUB(NOW(), INTERVAL 2 HOUR)"));
 
 $db->close_conn();
+//SPIEeTas847
