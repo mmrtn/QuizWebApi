@@ -48,11 +48,12 @@ class Game
 
             $questions = $variant->get_Variant(); //array from Variant object
             $answer = $variant->get_Answer();
+            $videoID = $variant->getVideoID();
 
 
-            $query_str = "INSERT INTO `quiz`(`test_array`, `answer`, `ticket`) VALUES ('%s', '%s', '%s')";
+            $query_str = "INSERT INTO `quiz`(`test_array`, `answer`, `ticket`, `videoID`) VALUES ('%s', '%s', '%s', '%s')";
 
-            $sql = sprintf($query_str, mysqli_real_escape_string($db_link, json_encode($questions)), $answer, $this->ticket . 'Q' . $qustion_nr);
+            $sql = sprintf($query_str, mysqli_real_escape_string($db_link, json_encode($questions)), $answer, $this->ticket . 'Q' . $qustion_nr, $videoID);
 
             $db->db_query($sql);
 

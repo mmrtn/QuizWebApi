@@ -14,6 +14,7 @@ class Variants
      * @var int $answer - equals to index of right elemnt in array - $variant_arr
      */
     private $answer;
+    private $video_ID;
 
     function __construct($variants_arr)
     {
@@ -32,7 +33,9 @@ class Variants
             $variants[] = $element['song'] . " - " . $element['artist'] . " - " . $element['imgURL'];
         }
         $this->answer = rand(0, count($variants) - 1);
+        $this->video_ID = $variants_arr[$this->answer]['videoID'];
         $this->variant_arr = $variants;
+
         // shuffle($this->variant_arr);
     }
 
@@ -56,4 +59,14 @@ class Variants
     {
         return $this->answer;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getVideoID()
+    {
+        return $this->video_ID;
+    }
+
+
 }

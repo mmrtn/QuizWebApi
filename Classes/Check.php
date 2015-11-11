@@ -50,4 +50,10 @@ class Check
         $query = new Query("SELECT `test_array` FROM `quiz` WHERE BINARY `ticket` LIKE '$ticket%' LIMIT 1");
         return $query->getResult()['test_array'];
     }
+
+    static function get_videoID($ticket)
+    {
+        $query = new Query("SELECT `videoID` FROM `quiz` WHERE BINARY `ticket` LIKE '$ticket%' LIMIT 1");
+        return $query->getResult()['videoID'];
+    }
 }

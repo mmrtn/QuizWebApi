@@ -52,7 +52,7 @@ if (isset($_GET)) {
         $ticket = $_GET['ticket'];
         if (array_key_exists('method', $_GET) && $_GET['method'] == 'next') {
             $api_response['status'] = 200;
-            $api_response['youTubeId'] = 'not where yet...';
+            $api_response['videoID'] = Check::get_videoID($ticket);
             $api_response['variants'] = json_decode(Check::get_varinats($ticket)); //converts array to string in json
             WebAPI::deliver_response('json', $api_response);
         } elseif (array_key_exists('answer', $_GET)) {
