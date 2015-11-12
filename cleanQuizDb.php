@@ -2,7 +2,7 @@
 
 //will be used by cronjob
 
-require_once '/Classes/Database.php';
+require_once 'Classes/Database.php';
 require_once 'config.php';
 
 function log_query($line) {

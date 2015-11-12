@@ -9,7 +9,7 @@ spl_autoload_register('autoload');
 function autoload($files)
 {
 
-    require_once '/Classes/' . $files . '.php';
+    require_once 'Classes/' . $files . '.php';
 }
 
 require_once 'config.php';
